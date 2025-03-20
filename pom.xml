@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>co.ucentral</groupId>
-	<artifactId>bkedgame</artifactId>
+	<artifactId>bkedinventario</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bkedgame</name>
 	<description>Proyecto back end game</description>
