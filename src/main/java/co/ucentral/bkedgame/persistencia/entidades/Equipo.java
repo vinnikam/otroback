@@ -13,11 +13,14 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 public class Equipo {
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @Column(unique = true)
     private String nombre;
+
     private String nombreCorto;
-    private LocalDateTime fechaCreacion;
+    //private LocalDateTime fechaCreacion;
 }
