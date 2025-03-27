@@ -1,0 +1,154 @@
+{
+  "version": 6,
+  "entities": [
+    {
+      "entity": {
+        "type": "Project",
+        "id": "dec65146-a8d5-47d3-800e-f3f911a05a29",
+        "name": "equipos"
+      },
+      "children": [
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBodyEditorHeight": 150,
+              "textBody": "{ \n \"nombre\":\"Equidad\",\n \"nombreCorto\":\"Asegurador\",\n \"fechaCreacion\": \"2010-03-26T00:00:00\"\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "127.0.0.1:8862",
+              "path": "/equipos/"
+            },
+            "id": "00b6ade0-0be1-455f-ad38-8bd903c2afbd",
+            "name": "guardar",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{ \n \"nombre\":\"El equipo 2\",\n \"nombreCorto\":\"Elequi 2\"\n \n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "127.0.0.1:8862",
+              "path": "/equipos/"
+            },
+            "id": "31c56f05-df4b-4368-8025-4511f83edd6c",
+            "name": "listar",
+            "headers": []
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{ \n \"nombre\":\"El equipo 2\",\n \"nombreCorto\":\"Elequi 2\"\n \n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "127.0.0.1:8862",
+              "path": "/equipos/pk/1"
+            },
+            "id": "873e4214-71de-4ab1-bab4-32ffc57c819d",
+            "name": "obtenerXPrimaryk",
+            "headers": []
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{ \n \"nombre\":\"El equipo 2\",\n \"nombreCorto\":\"Elequi 2\"\n \n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "127.0.0.1:8862",
+              "path": "/equipos/nombre/barcelona"
+            },
+            "id": "f5810a28-4b6c-405f-8b46-51133fd195d3",
+            "name": "obtenerXnombre",
+            "headers": []
+          }
+        }
+      ]
+    }
+  ]
+}

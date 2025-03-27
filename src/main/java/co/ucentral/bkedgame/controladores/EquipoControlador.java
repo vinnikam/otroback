@@ -1,5 +1,6 @@
 package co.ucentral.bkedgame.controladores;
 
+import co.ucentral.bkedgame.dto.EquipoDto;
 import co.ucentral.bkedgame.persistencia.entidades.Equipo;
 import co.ucentral.bkedgame.servicios.EquipoServicio;
 import lombok.AllArgsConstructor;
@@ -28,7 +29,7 @@ public class EquipoControlador {
     }
 
     @PostMapping("/")
-    public Equipo crear(@RequestBody Equipo equipo){
+    public EquipoDto crear(@RequestBody EquipoDto equipo){
         return equipoServicio.crear(equipo);
     }
 
