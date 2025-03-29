@@ -1,6 +1,7 @@
 package co.ucentral.bkedgame.servicios;
 
 import co.ucentral.bkedgame.dto.EquipoDto;
+import co.ucentral.bkedgame.persistencia.entidades.DirectorTecnico;
 import co.ucentral.bkedgame.persistencia.entidades.Equipo;
 import co.ucentral.bkedgame.persistencia.repositorios.EquipoRepositorio;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,10 +26,17 @@ public class EquipoServicio {
     }
 
     public EquipoDto crear(EquipoDto equipoDto){
+        DirectorTecnico directorTecnico = DirectorTecnico.builder()
+                .nombreCompleto(equipoDto.directorTecnico().getNombreCompleto())
+                .nacionalidad(equipoDto.directorTecnico().getNacionalidad())
+                .fechaIngreso(LocalDateTime.now())
+                .disponible(false)
+                .build();
         Equipo equipo = Equipo.builder()
                 .nombre(equipoDto.nombre())
                 .nombreCorto(equipoDto.nombreCorto())
                 .fechaCreacion(equipoDto.fechaCreacion())
+                .directorTecnico(directorTecnico)
                 .build();
 
         if (equipoRepositorio.save(equipo).getId() > 0)

@@ -23,4 +23,9 @@ public class Equipo {
 
     private String nombreCorto;
     private LocalDateTime fechaCreacion;
+
+    @OneToOne(cascade = CascadeType.ALL) // Relación 1 a 1
+    @JoinColumn(name = "directorTecnico_id") // Llave foránea del DT
+    private DirectorTecnico directorTecnico;
+
 }
