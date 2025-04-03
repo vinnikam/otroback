@@ -23,5 +23,10 @@ public class DirectorTecnico {
     private LocalDateTime fechaIngreso;
     private boolean disponible;
 
+    @Column(unique = true)
+    private String usuario;
+    private String clave;
+
+
 
 }

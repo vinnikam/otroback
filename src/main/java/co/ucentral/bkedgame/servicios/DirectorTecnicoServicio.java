@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -25,6 +26,19 @@ public class DirectorTecnicoServicio {
     }
     public List<DirectorTecnico> obtenerTodos() {
         return directorTecnicoRepositorio.findAll();
+    }
+    public DirectorTecnicoDto autenticar(DirectorTecnicoDto directorTecnicoDto) {
+        Optional<DirectorTecnico> optional = this.directorTecnicoRepositorio.findByUsuario(directorTecnicoDto.usuario());
+        if (optional.isPresent() && optional.get().getClave().equals(directorTecnicoDto.clave())) {
+
+            return new DirectorTecnicoDto(
+                    optional.get().getNombreCompleto(),
+                    optional.get().getNacionalidad(),
+                    optional.get().getUsuario(),
+                    optional.get().getClave());
+        }else
+            return null;
+
     }
 
 }

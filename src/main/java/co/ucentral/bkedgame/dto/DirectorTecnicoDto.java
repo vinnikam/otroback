@@ -1,4 +1,6 @@
 package co.ucentral.bkedgame.dto;
 
-public record DirectorTecnicoDto(String nombreCompleto, String nacionalidad) {
+import java.time.LocalDateTime;
+
+public record DirectorTecnicoDto(String nombreCompleto, String nacionalidad, String usuario, String clave) {
 }

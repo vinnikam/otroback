@@ -27,6 +27,8 @@ public class BkedgameApplication {
 					.nombreCompleto("Gamero")
 					.disponible(true)
 					.nacionalidad("Colombiano")
+					.usuario("gmero")
+					.clave("123456")
 					.build();
 
 			directorTecnicoRepositorio.save(directorTecnico);

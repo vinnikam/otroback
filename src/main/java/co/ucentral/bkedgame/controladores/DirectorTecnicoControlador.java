@@ -21,6 +21,10 @@ public class DirectorTecnicoControlador {
     public DirectorTecnico crear(@RequestBody DirectorTecnicoDto directorTecnicoDto){
         return directorTecnicoServicio.crear(directorTecnicoDto);
     }
+    @PostMapping("/autenticar")
+    public DirectorTecnicoDto autenticar(@RequestBody DirectorTecnicoDto directorTecnicoDto){
+        return directorTecnicoServicio.autenticar(directorTecnicoDto);
+    }
 
     @GetMapping("/")
     public List<DirectorTecnico> obtenerTodos(){
