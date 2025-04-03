@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @Log4j2
 public class DirectorTecnicoServicio {
-    private static final Logger logger = LogManager.getLogger(DirectorTecnicoServicio.class);
-
+    private static final Logger log4jLog = LogManager.getLogger(DirectorTecnicoServicio.class);
 
     DirectorTecnicoRepositorio directorTecnicoRepositorio;
     BCryptPasswordEncoder passwordEncoder;
@@ -38,10 +38,10 @@ public class DirectorTecnicoServicio {
     }
     public DirectorTecnicoDto autenticar(DirectorTecnicoDto directorTecnicoDto) {
         Optional<DirectorTecnico> optional = this.directorTecnicoRepositorio.findByUsuario(directorTecnicoDto.usuario());
-        logger.log(Level.DEBUG,
-                "Dato llegando "+directorTecnicoDto.clave()+" Bycrypt "+
-                        passwordEncoder.encode(directorTecnicoDto.clave())+
-                        "Dato interno"+  optional.get().getClave());
+        log4jLog.info("Verificando ");
+        log4jLog.debug("message {}", 1);
+
+        log4jLog.log(Level.DEBUG," Esto es un mensaje {}", optional.get().getClave());
         if (optional.isPresent() && optional.get().getClave().equals(directorTecnicoDto.clave())) {
             return new DirectorTecnicoDto(
                     optional.get().getNombreCompleto(),
