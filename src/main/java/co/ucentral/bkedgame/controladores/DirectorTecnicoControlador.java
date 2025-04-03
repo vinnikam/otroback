@@ -5,6 +5,8 @@ import co.ucentral.bkedgame.persistencia.entidades.DirectorTecnico;
 import co.ucentral.bkedgame.persistencia.entidades.Equipo;
 import co.ucentral.bkedgame.servicios.DirectorTecnicoServicio;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +24,14 @@ public class DirectorTecnicoControlador {
         return directorTecnicoServicio.crear(directorTecnicoDto);
     }
     @PostMapping("/autenticar")
-    public DirectorTecnicoDto autenticar(@RequestBody DirectorTecnicoDto directorTecnicoDto){
-        return directorTecnicoServicio.autenticar(directorTecnicoDto);
+    public ResponseEntity<DirectorTecnicoDto>  autenticar(@RequestBody DirectorTecnicoDto directorTecnicoDto){
+        directorTecnicoDto = directorTecnicoServicio.autenticar(directorTecnicoDto) ;
+        if (directorTecnicoDto != null)
+        {
+            return ResponseEntity.ok().body(directorTecnicoDto);
+        }else{
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
     }
 
     @GetMapping("/")

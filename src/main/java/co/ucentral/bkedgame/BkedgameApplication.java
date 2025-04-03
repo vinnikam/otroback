@@ -25,12 +25,15 @@ public class BkedgameApplication {
 						   DirectorTecnicoRepositorio directorTecnicoRepositorio,
 						   BCryptPasswordEncoder passwordEncoder) {
 		return args -> {
+			//String laclave = passwordEncoder.encode("123456");
+			String laclave = "123456";
+			System.out.println(laclave);
 			DirectorTecnico directorTecnico = DirectorTecnico.builder()
 					.nombreCompleto("Gamero")
 					.disponible(true)
 					.nacionalidad("Colombiano")
 					.usuario("gmero")
-					.clave(passwordEncoder.encode("123456"))
+					.clave(laclave)
 					.build();
 
 			directorTecnicoRepositorio.save(directorTecnico);
