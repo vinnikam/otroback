@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 import java.util.Set;
@@ -21,14 +22,15 @@ public class BkedgameApplication {
 	}
 	@Bean
 	CommandLineRunner init(EquipoRepositorio equipoRepositorio,
-						   DirectorTecnicoRepositorio directorTecnicoRepositorio) {
+						   DirectorTecnicoRepositorio directorTecnicoRepositorio,
+						   BCryptPasswordEncoder passwordEncoder) {
 		return args -> {
 			DirectorTecnico directorTecnico = DirectorTecnico.builder()
 					.nombreCompleto("Gamero")
 					.disponible(true)
 					.nacionalidad("Colombiano")
 					.usuario("gmero")
-					.clave("123456")
+					.clave(passwordEncoder.encode("123456"))
 					.build();
 
 			directorTecnicoRepositorio.save(directorTecnico);
