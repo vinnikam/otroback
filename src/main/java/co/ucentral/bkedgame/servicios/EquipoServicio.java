@@ -26,19 +26,22 @@ public class EquipoServicio {
     }
 
     public EquipoDto crear(EquipoDto equipoDto){
-        DirectorTecnico directorTecnico = DirectorTecnico.builder()
-                .nombreCompleto(equipoDto.directorTecnico().getNombreCompleto())
-                .nacionalidad(equipoDto.directorTecnico().getNacionalidad())
-                .fechaIngreso(LocalDateTime.now())
-                .disponible(false)
-                .build();
+
+
         Equipo equipo = Equipo.builder()
                 .nombre(equipoDto.nombre())
                 .nombreCorto(equipoDto.nombreCorto())
                 .fechaCreacion(equipoDto.fechaCreacion())
-                .directorTecnico(directorTecnico)
                 .build();
-
+        if (equipoDto.directorTecnico() != null){
+            DirectorTecnico directorTecnico = DirectorTecnico.builder()
+                    .nombreCompleto(equipoDto.directorTecnico().getNombreCompleto())
+                    .nacionalidad(equipoDto.directorTecnico().getNacionalidad())
+                    .fechaIngreso(LocalDateTime.now())
+                    .disponible(false)
+                    .build();
+            equipo.setDirectorTecnico(directorTecnico);
+        }
         if (equipoRepositorio.save(equipo).getId() > 0)
             return equipoDto;
         else return null;

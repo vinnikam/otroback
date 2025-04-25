@@ -52,5 +52,18 @@ public class DirectorTecnicoServicio {
             return null;
 
     }
+    public DirectorTecnicoDto autenticar2(DirectorTecnicoDto directorTecnicoDto) {
+        Optional<DirectorTecnico> optional =
+                this.directorTecnicoRepositorio.findByUsuarioAndClave(directorTecnicoDto.usuario(), directorTecnicoDto.clave());
+        if (optional.isPresent() ) {
+            return new DirectorTecnicoDto(
+                    optional.get().getNombreCompleto(),
+                    optional.get().getNacionalidad(),
+                    optional.get().getUsuario(),
+                    "");
+        }else
+            return null;
+
+    }
 
 }

@@ -5,5 +5,8 @@ import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBl
 
 import java.time.LocalDateTime;
 
-public record EquipoDto(@NotBlank String nombre, String nombreCorto, LocalDateTime fechaCreacion, DirectorTecnico directorTecnico) {
+public record EquipoDto(@NotBlank String nombre,
+                        String nombreCorto,
+                        LocalDateTime fechaCreacion,
+                        DirectorTecnico directorTecnico) {
 }

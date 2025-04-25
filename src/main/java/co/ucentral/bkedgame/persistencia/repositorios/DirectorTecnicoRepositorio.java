@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface DirectorTecnicoRepositorio extends JpaRepository<DirectorTecnico, Long> {
     Optional<DirectorTecnico> findByUsuario(String usuario);
+
+    Optional<DirectorTecnico> findByUsuarioAndClave(String usuario, String clave);
 }
