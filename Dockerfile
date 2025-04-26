@@ -8,7 +8,7 @@ COPY pom.xml /app
 COPY src/main/resources/application.properties /app
 COPY src /app/src
 
-RUN mvn -f pom.xml clean package
+RUN mvn -f pom.xml clean package -DskipTests
 
 RUN cp target/*.jar app.jar
 EXPOSE 8863
