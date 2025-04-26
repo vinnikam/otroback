@@ -2,6 +2,9 @@ FROM maven:3.8.3-openjdk-17
 ENV JAVA_HOME /usr/java/openjdk-17
 RUN export JAVA_HOME
 
+# Instalar Maven
+RUN apt-get update && apt-get install -y maven
+
 RUN mkdir -p /app
 WORKDIR /app
 COPY pom.xml /app
