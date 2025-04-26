@@ -1,19 +1,24 @@
-FROM maven:3.8.3-openjdk-17
-ENV JAVA_HOME /usr/java/openjdk-17
-RUN export JAVA_HOME
+# Usar una imagen base de Maven para compilar y ejecutar la aplicación
+FROM maven:3.8.6-openjdk-17 AS builder
 
-# Instalar Maven
-RUN apt-get update && apt-get install -y maven
-
-RUN mkdir -p /app
+# Configurar el directorio de trabajo dentro del contenedor
 WORKDIR /app
-COPY pom.xml /app
-COPY src/main/resources/application.properties /app
-COPY src /app/src
 
-RUN mvn -f pom.xml clean package
+# Construir la aplicación y generar el archivo JAR
+RUN mvn clean package -DskipTests
 
-RUN cp target/*.jar app.jar
+# --------------------------------------
+# Crear una imagen ligera para ejecutar la aplicación
+FROM openjdk:17-jdk-slim
+
+# Establecer el directorio de trabajo
+WORKDIR /app
+
+# Copiar el archivo JAR desde la imagen de construcción
+COPY --from=builder /app/target/*.jar app.jar
+
+# Exponer el puerto de la aplicación
 EXPOSE 8863
 
-ENTRYPOINT ["java","-jar","app.jar","--spring.config.location=application.properties"]
+# Ejecutar la aplicación
+ENTRYPOINT ["java", "-jar", "app.jar",,"--spring.config.location=application.properties"]
